@@ -1,2 +1,2 @@
-@ java -jar jBingo.jar
+@java jbingo.clases.Consola
 @ pause
