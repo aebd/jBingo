@@ -6,14 +6,17 @@ package jbingo.gui;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import jbingo.clases.Bombo;
 import jbingo.clases.Cartones;
 import jbingo.clases.Configuracion;
+import jbingo.clases.Sonido;
 
 /**Interfaz gráfica de la aplicación
  *
@@ -24,6 +27,8 @@ public class Main extends javax.swing.JFrame {
     private JFileChooser jFileChooser1;
     private Configuracion conf;
     private int numbolas = 0;
+    private Bombo bolas;
+    private Sonido sonido = new Sonido();
     /**
      * Crea la interfaz gráfica.
      */
@@ -34,6 +39,9 @@ public class Main extends javax.swing.JFrame {
         this.juego.setVisible(false);
         this.configuracion.setVisible(false);
         this.cartonespane.setVisible(false);
+        this.juego40.setVisible(false);
+        this.juego60.setVisible(false);
+        this.juego90.setVisible(false);
         this.conf = new Configuracion();
         if(conf.existe()){
             conf.cargar();
@@ -49,7 +57,9 @@ public class Main extends javax.swing.JFrame {
                             case 3:numbolas=90;break;
                         }
         this.voz.removeAllItems();
-        this.voz.addItem(conf.getVoz());
+        for(int i = 0; i<conf.getVoces().length;i++){
+            this.voz.addItem(conf.getVoces()[i]);
+        }
     }
 
     /**
@@ -70,6 +80,14 @@ public class Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         juego = new javax.swing.JPanel();
         volver = new javax.swing.JButton();
+        sacado = new javax.swing.JLabel();
+        juego40 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        juego60 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        juego90 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        sacar = new javax.swing.JButton();
         cartonespane = new javax.swing.JPanel();
         numcartones = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -90,7 +108,7 @@ public class Main extends javax.swing.JFrame {
         configApli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("jBingo 4.0.2");
+        setTitle("jBingo 4.0.3");
         setBounds(new java.awt.Rectangle(300, 150, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setFocusCycleRoot(false);
@@ -170,7 +188,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         jLabel5.setForeground(new java.awt.Color(60, 127, 177));
-        jLabel5.setText("v 4.0.2");
+        jLabel5.setText("v 4.0.3");
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -220,22 +238,132 @@ public class Main extends javax.swing.JFrame {
                 volverMouseClicked(evt);
             }
         });
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
+        sacado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sacado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sacado.setText("NUM_SACADO");
+        sacado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel6.setText("ESTO ES EL JUEGO DE 40 BOLAS");
+
+        javax.swing.GroupLayout juego40Layout = new javax.swing.GroupLayout(juego40);
+        juego40.setLayout(juego40Layout);
+        juego40Layout.setHorizontalGroup(
+            juego40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(juego40Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        juego40Layout.setVerticalGroup(
+            juego40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(juego40Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+
+        jLabel7.setText("ESTO ES EL JUEGO DE 60 BOLAS");
+
+        javax.swing.GroupLayout juego60Layout = new javax.swing.GroupLayout(juego60);
+        juego60.setLayout(juego60Layout);
+        juego60Layout.setHorizontalGroup(
+            juego60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(juego60Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(224, Short.MAX_VALUE))
+        );
+        juego60Layout.setVerticalGroup(
+            juego60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(juego60Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+
+        jLabel8.setText("ESTO ES EL JUEGO DE 90 BOLAS");
+
+        javax.swing.GroupLayout juego90Layout = new javax.swing.GroupLayout(juego90);
+        juego90.setLayout(juego90Layout);
+        juego90Layout.setHorizontalGroup(
+            juego90Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(juego90Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(224, Short.MAX_VALUE))
+        );
+        juego90Layout.setVerticalGroup(
+            juego90Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(juego90Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+
+        sacar.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        sacar.setText("Sacar");
+        sacar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sacarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout juegoLayout = new javax.swing.GroupLayout(juego);
         juego.setLayout(juegoLayout);
         juegoLayout.setHorizontalGroup(
             juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, juegoLayout.createSequentialGroup()
-                .addContainerGap(550, Short.MAX_VALUE)
-                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(juegoLayout.createSequentialGroup()
+                .addGroup(juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(juegoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(juego40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(juegoLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(sacar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addComponent(sacado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(163, 163, 163)
+                        .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(juegoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(juego60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(juegoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(juego90, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         juegoLayout.setVerticalGroup(
             juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, juegoLayout.createSequentialGroup()
-                .addContainerGap(405, Short.MAX_VALUE)
-                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(juego40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sacado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sacar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(volver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(juegoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(juego60, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(181, Short.MAX_VALUE)))
+            .addGroup(juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(juegoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(juego90, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(179, Short.MAX_VALUE)))
         );
 
         cartonespane.setBackground(new java.awt.Color(202, 212, 249));
@@ -431,11 +559,11 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(duracion, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(solascheck, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(129, 129, 129)
-                        .addGroup(configuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(configuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(configuracionLayout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(voz, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(voz, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(defaut, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
@@ -524,6 +652,9 @@ public class Main extends javax.swing.JFrame {
         this.juego.setVisible(false);
         this.configuracion.setVisible(false);
         this.cartonespane.setVisible(false);
+        this.juego40.setVisible(false);
+        this.juego60.setVisible(false);
+        this.juego90.setVisible(false);
     }//GEN-LAST:event_volverMouseClicked
 
     private void jugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jugarMouseClicked
@@ -531,6 +662,18 @@ public class Main extends javax.swing.JFrame {
         this.juego.setVisible(true);
         this.configuracion.setVisible(false);
         this.cartonespane.setVisible(false);
+        switch(conf.getDuracion()){
+            case 1:this.juego40.setVisible(true);
+                   this.juego60.setVisible(false);
+                   this.juego90.setVisible(false);break;
+            case 2:this.juego60.setVisible(true);
+                   this.juego40.setVisible(false);
+                   this.juego90.setVisible(false);break;
+            case 3:this.juego90.setVisible(true);
+                   this.juego40.setVisible(false);
+                   this.juego60.setVisible(false);break;
+        }
+        bolas = new Bombo(numbolas);
     }//GEN-LAST:event_jugarMouseClicked
 
     private void duracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duracionActionPerformed
@@ -538,7 +681,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_duracionActionPerformed
 
     private void configMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configMouseClicked
-       this.menu.setVisible(false);
+        this.menu.setVisible(false);
         this.juego.setVisible(false);
         this.configuracion.setVisible(true);
         this.cartonespane.setVisible(false);
@@ -667,6 +810,24 @@ public class Main extends javax.swing.JFrame {
         this.solascheck.setSelected(conf2.isSolas());
     }//GEN-LAST:event_defautMouseClicked
 
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void sacarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sacarMouseClicked
+        if(bolas.tamaño()>0){
+            int bola = bolas.sacar();
+            this.sacado.setText(""+bola);
+            try {
+                this.sonido.reproducir(conf.getVoz(), bola);
+            } catch (    MalformedURLException | InterruptedException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }           
+        }else{
+            this.sacado.setText("¡ FIN !");
+        }
+    }//GEN-LAST:event_sacarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -716,12 +877,20 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel juego;
+    private javax.swing.JPanel juego40;
+    private javax.swing.JPanel juego60;
+    private javax.swing.JPanel juego90;
     private javax.swing.JButton jugar;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logo1;
     private javax.swing.JPanel menu;
     private javax.swing.JTextField numcartones;
+    private javax.swing.JLabel sacado;
+    private javax.swing.JButton sacar;
     private javax.swing.JButton salir;
     private javax.swing.JCheckBox solascheck;
     private javax.swing.JButton volver;

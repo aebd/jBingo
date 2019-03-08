@@ -12,7 +12,7 @@ import java.io.Serializable;
  * En ella se especifican las configuraciones del juego.
  *
  * @author Jesús Alcalde Alcázar
- * @version 3.5
+ * @version 4.0.3
  */
 public class Configuracion implements Serializable{
     
@@ -28,7 +28,6 @@ public class Configuracion implements Serializable{
      * @since 3.5
      */
     private boolean solas;
-    
     
     /**Constructor con los valores de configuración por defecto.
      * @since 4.0.1
@@ -130,7 +129,11 @@ public class Configuracion implements Serializable{
      * @since 3.5
      */
     public void setVoz(String voz) {
-        this.voz = voz;
+        int i = 0;
+        boolean contenido = false;
+        while(i<getVoces().length && !(contenido)){
+            contenido = (getVoces()[i].equals(voz));
+        }
     }
 
     /**¿Se pasan solas las bolas?
@@ -147,6 +150,14 @@ public class Configuracion implements Serializable{
      */
     public void setSolas(boolean solas) {
         this.solas = solas;
+    }
+
+    /**Lista de voces posibles.
+     * @return Las posibles voces
+     * @since 4.0.3
+     */
+    public String[] getVoces() {
+        return (new File("Sonidos/").list());
     }
 
 }
