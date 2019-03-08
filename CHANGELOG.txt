@@ -1,0 +1,112 @@
+****************************************************************
+*                                                              *
+*                       jBingo®                        	       *
+*                                                              *
+****************************************************************
+
+
+	• 1.0: 	-Añadidas unidades principales( uConjuntos, uElem)
+		-Primer programa básico.
+
+	• 1.1:  -Reestructuración para mejoras.
+
+	• 1.2:	-Añadida unidad "uFicheros" (manejo de ficheros). Falta quitar 
+		la repeticion de los cartones generados en el archivo.
+		NOTA: Al especificar la ruta se debe incluir la extension del archivo.
+	
+	• 2.0:  -Añadida uProc( para los distintos procedimientos).
+		-Pequeña interfaz gráfica.
+	
+	• 2.1:  -Mejorada la interfaz gráfica se visualizan los 2 ultimos numeros sacados.
+		-Cambiada la funcion Elegir de uCOnjuntos, antes se realizaba un for O(n^2)
+		    porque cada vez volvia a calcular un nº aleatorio, ahora solo lo calcula una vez.
+		-Mejoras en las funciones de numeros y tachar.
+
+	• 2.2:  -Añadido Menu.
+		-Mejoras visuales.
+
+	• 2.3:  -Añadida la opcion de continuar partida.
+		-Arreglado repeticion de numeros en cartones.
+
+	• 2.4:  -Mejoras en el menu.
+		-Añadido Menu "In game"
+	
+	• 2.5:  -Mejorado Menu "In Game"
+		-Posibilida de guardar y Cargar partidas. NOTA: la funcion cargar falla.
+
+	• 3.0:	-Añadida la unidad uSonido. 
+		NOTA: La unidad uSonido requiere la unidad MMSystem por lo que hay que añadir los archivos 				"mmsystem.o" y "mmsystem.ppu" a EclipseGavab en el siguiente
+		directorio: "C:\Program Files (x86)\EclipseGavab 2.0\fpc\2.2.0\units\i386-win32\rtl".Además, 
+		es una unidad exclusiva de FreePascal, habrá que compilarlo con éste.
+		-Añadida la carpeta "Sonidos", donde se encuentran todos los sonidos de las bolas. 
+		
+		(Sigue fallando la opción "cargar")
+
+	• 3.1: -Arreglada la opción "Cargar".
+	       -Arreglados errores menores:
+			-Si habias pausado o cargado la partida, al finalizar ibas al menu "in game" y no
+			  al principal.
+			-Se muestra primero el numero y luego se reproduce el sonido, para dar agilidad.
+			-Se muestra error si intentas cargar un archivo inexistente.
+			-Se mestra error si intentas guardar un archivo que reemplace a otro.
+				(Posible mejora: Pedir al usuario reemplazar el archivo)
+		-Agilizado del menu.
+		-Optimizada la opcion de cargar, practicamente es instantanea, =)
+
+
+	• 3.2:	-Añadida otra voz más real (Leonor)
+		-Cambiada la función Generador. Ahora necesita 3 parámetros: el número inicial, el final y el 
+		conjunto. Ahora es más general.
+		-Modificada la función cartones. Ahora se eligen 3 numeros entre 1 y 10, 3 entre 11 y 20,...,hasta
+		50. También se ordenan en orden ascendente.
+		-Añadida la unidad uVectores para trabajar con vectores. 
+		-Corregido pequeño bug en la unidad uFicheros.
+	
+
+	• 3.3:  -Mejorada la representación de los cartones, los organiza por filas y columnas.
+		-Agregado Reproduccion automatica, las bolas se pasan solas.(Mas tarde se preguntara al usuario)
+
+	• 3.4:  -Mejorado el sistema de cartones. ( Aparecen ceros en la primra columna )
+
+	• 3.5:  -Cambio de nombre de "TurboBingo" a "jBingo".
+		-Paso al lenguaje java.
+		-Añadido menu de configuración.
+			-Se puede cambiar la longitud de la partida CORTA(40 bolas) / MEDIA (60 bolas) / LARGA (90 bolas)
+			-Opcion de cambiar la direccion de los archivos de sonido y auto pase de bolas.
+		-Perdida la opción de guardar partida, asi como de cargarla.
+		-Perdida la buena estructuración de los cartones.
+		-Faltan archivos de sonido (desde el 51.wav al 90.wav)
+		-Opción de crear una interfaz gráfica.
+
+	• 4.0:  -Añadida interfaz gráfica funcional.
+		-Añadidos los sonidos de las bolas hasta la 90. La voz es de Leonor no de Juana!!
+ 		NOTA: Faltan los eventos y el juego en si.
+
+	• 4.0.1:- Añadido icono al programa.
+		- Mejoras en cartones:
+			- Ya se generan los cartones desde la GUI.
+			- Posiblidad de escoger el directorio desde Explorar...
+			- Genera archivos de texto solo y eliminado "Todos los archivos"
+			- Si pones tu la dirección se genera automáticamente la extensión (*.txt)
+			- Al darle al nuevo boton CR3AR, aparece un popup que te pregunta si quieres abrir el nuevo archivo.
+			- La ruta por defecto se establece en donde se encuentre el archivo (*.jar)
+
+		- Mejoras en configuración:
+			- Al abrir la ventana, se muestra la configuracion actual.
+			- El botón guardar funciona.
+			- Posibilidad de poner los valores por defecto.
+			- Totalmente funcional.
+
+		- Sigue faltando la ventana del Juego.
+
+	• 4.0.2:- Pequeña modicifación en configuración:
+			- Si das a "Valores Por Defecto" no se cambian directamente, 
+				si le das a cancelar vuelves a los valores anteriores.
+			- Cambiada la voz de "Juana" por "Leonor".
+			- Se añaden los elementos de voz desde el archivo de configuración, por lo que deja lugar a implementar un 				método que reconozca las posibles voces y se añadiran automaticamente en la GUI
+
+	• 4.0.3:- Para añadir una voz basta con meterla en la carpeta "Sonidos/"
+		- Ya se puede jugar desde la GUI.
+		- Se reproduce el sonido de la bola.
+
+©2012 The14Show 
