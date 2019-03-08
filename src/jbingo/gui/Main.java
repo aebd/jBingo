@@ -48,6 +48,8 @@ public class Main extends javax.swing.JFrame {
                             case 2:numbolas=60;break;
                             case 3:numbolas=90;break;
                         }
+        this.voz.removeAllItems();
+        this.voz.addItem(conf.getVoz());
     }
 
     /**
@@ -88,7 +90,7 @@ public class Main extends javax.swing.JFrame {
         configApli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("jBingo 4.0.1");
+        setTitle("jBingo 4.0.2");
         setBounds(new java.awt.Rectangle(300, 150, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setFocusCycleRoot(false);
@@ -168,7 +170,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         jLabel5.setForeground(new java.awt.Color(60, 127, 177));
-        jLabel5.setText("v 4.0");
+        jLabel5.setText("v 4.0.2");
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -185,8 +187,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(config, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cartones, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addComponent(jLabel5)
                 .addGap(36, 36, 36))
         );
         menuLayout.setVerticalGroup(
@@ -373,7 +375,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        voz.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Juana" }));
+        voz.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Default" }));
         voz.setMinimumSize(new java.awt.Dimension(53, 20));
 
         jLabel2.setText("Voz:");
@@ -655,14 +657,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_configApliMouseClicked
 
     private void defautMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_defautMouseClicked
-        conf = new Configuracion();
-         switch(conf.getDuracion()){
+        Configuracion conf2 = new Configuracion();
+         switch(conf2.getDuracion()){
             case 1:this.duracion.setSelectedItem("Corta");break;
             case 2:this.duracion.setSelectedItem("Media");break;
             case 3:this.duracion.setSelectedItem("Larga");break;
         }
-        this.voz.setSelectedItem(conf.getVoz());
-        this.solascheck.setSelected(conf.isSolas());
+        this.voz.setSelectedItem(conf2.getVoz());
+        this.solascheck.setSelected(conf2.isSolas());
     }//GEN-LAST:event_defautMouseClicked
 
     /**

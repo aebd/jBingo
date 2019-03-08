@@ -31,11 +31,11 @@ public class Configuracion implements Serializable{
     
     
     /**Constructor con los valores de configuración por defecto.
-     * @since 3.5
+     * @since 4.0.1
      */
     public Configuracion(){
         duracion = 1;
-        voz = "Juana";
+        voz = "Leonor";
         solas = true;      
     }
     
@@ -148,4 +148,5 @@ public class Configuracion implements Serializable{
     public void setSolas(boolean solas) {
         this.solas = solas;
     }
+
 }
